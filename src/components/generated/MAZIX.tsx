@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus, Menu, X, ArrowRight, Mail, MapPin } from 'lucide-react';
-const mazixLogo = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/dfb07d38a35a847047566c1afde27e1279928271a5c3255b6ae996d09e9892eb.png";
-const akselImg = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/f716293807ccc1606976c246217cd432d24ce494d779c4102eca52e026bdce0d.jpeg";
-const samyImg = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/d4ea1386379590190ea5790be74448b877c805a3f3cdd504ad9a10e2161d16d0.jpg";
-const oilidImg = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/7dfefc1c188b3f1fa89ecae12e4df0f7e16f62d6713aa8d17a6816598c115052.png";
-const miraImg = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/9727fcd2c8e792559c59e4a8518492403cc334e335c84ccc102ef23659985bab.jpg";
-const faroukImg = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/a5b1fbd80e1e9d5f484b782d4c2ea271f3abd2d61700305bbcb147edc528884f.png";
-const natixisLogo = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/a5556351200057620d60b95c3bb3f69ad4e271aa9f229206143891800c840603.jpg";
-const awsLogo = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/f41466c66be24867207cea99e920899b38d26ace95f3035d856811e224534087.jpg";
-const engieLogo = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/0608479b8b1648f6cffe6b2939ab3651f81734a056cc40b343d374484447e33f.png";
-const uberLogo = "https://storage.googleapis.com/storage.magicpath.ai/component-assets/437295741543784448/437328526165839872/380186d9931b95adcbf90fbe06e32e3b5a3329aed1cd96f40a380ba4d0026de9.png";
+const BASE = import.meta.env.BASE_URL;
+const mazixLogo = `${BASE}images/mazix-logo.png`;
+const akselImg = `${BASE}images/team/Aksel.jpeg`;
+const samyImg = `${BASE}images/team/Samy.png`;
+const oilidImg = `${BASE}images/team/Oilid.png`;
+const miraImg = `${BASE}images/team/Mira.jpg`;
+const hichamImg = `${BASE}images/team/Hicham.jpg`;
+const faroukImg = `${BASE}images/team/Farouk.png`;
+const natixisLogo = `${BASE}images/partners/natixis-clean.png`;
+const awsLogo = `${BASE}images/partners/aws-clean.png`;
+const engieLogo = `${BASE}images/partners/engie-clean.png`;
+const uberLogo = `${BASE}images/partners/uber-clean.png`;
 
 /* ============================================================
    MAZIX. Intelligence Engineering.
@@ -37,61 +39,66 @@ const NAV = [{
 }];
 const SERVICES = [{
   id: '001',
-  title: 'AI Strategy',
-  blurb: 'Identifying where artificial intelligence creates the highest value and turning it into a sequenced, fundable roadmap tied to real outcomes.',
-  tags: ['Opportunity mapping', 'Roadmapping', 'ROI modelling']
+  title: 'Product & Software Engineering',
+  blurb: 'Web software, mobile apps and full-stack products designed and built end to end, from the interface people touch to the infrastructure underneath, including turning proprietary expertise into AI-native products people pay for.',
+  tags: ['Full-stack products', 'Web & mobile apps', 'Product & UX']
 }, {
   id: '002',
-  title: 'AI Engineering',
-  blurb: 'Designing and building production-grade AI systems and software platforms that are reliable, observable and ready for scale.',
-  tags: ['LLM systems', 'Platform build', 'Evaluation']
+  title: 'AI Strategy & Enablement',
+  blurb: 'Finding where AI creates the highest value for your business, sequencing it into a fundable roadmap, and bringing your teams along so the capability actually sticks.',
+  tags: ['Opportunity mapping', 'Roadmapping & ROI', 'Team enablement']
 }, {
   id: '003',
+  title: 'AI Engineering & Agents',
+  blurb: 'Production-grade AI systems, agents and copilots that take real work off people’s plates: grounded, evaluated and integrated with the tools you already run on.',
+  tags: ['LLM systems', 'Agents & copilots', 'Evaluation']
+}, {
+  id: '004',
   title: 'Intelligent Automation',
   blurb: 'Automating complex workflows and repetitive processes with dependable systems that people across the organisation actually adopt.',
   tags: ['Workflow automation', 'Ops tooling', 'Human-in-the-loop']
 }, {
-  id: '004',
-  title: 'AI Agents & Copilots',
-  blurb: 'Building autonomous agents and copilots that take real work off people’s plates. They stay grounded, safe and integrated with your tools.',
-  tags: ['Agents', 'Copilots', 'Tool use']
-}, {
   id: '005',
-  title: 'Software & App Engineering',
-  blurb: 'Designing and building web software, mobile apps and full-stack products end to end, from the interface people touch to the infrastructure underneath.',
-  tags: ['Web software / app', 'Mobile software / app', 'Full-stack development']
-}, {
-  id: '006',
-  title: 'Data & AI Architecture',
-  blurb: 'Creating the data pipelines, retrieval and governance foundations required for scalable, trustworthy intelligence.',
-  tags: ['Pipelines', 'Retrieval / RAG', 'Governance']
-}, {
-  id: '007',
-  title: 'MLOps & Observability',
-  blurb: 'Putting the infrastructure in place to ship, monitor and improve AI in production, with evaluation and guardrails built in.',
-  tags: ['Deployment', 'Monitoring', 'Guardrails']
-}, {
-  id: '008',
-  title: 'AI Enablement',
-  blurb: 'Bringing your teams along with the practices, tooling and training that make intelligent systems part of how you work.',
-  tags: ['Workshops', 'Playbooks', 'Change']
+  title: 'Data, Infrastructure & Governance',
+  blurb: 'The pipelines, retrieval and observability foundations intelligence runs on, with EU AI Act readiness, privacy and data residency built in from day one, not bolted on after.',
+  tags: ['Pipelines & RAG', 'MLOps & monitoring', 'EU AI Act & GDPR']
 }];
 const APPROACH = [{
   step: '01',
-  title: 'Understand',
-  body: 'We start inside your business: the workflows, the constraints, the people. Successful AI adoption is a business problem before it is a technical one.'
+  title: 'Diagnose',
+  body: 'We start with what’s hurting: the bottleneck in your product, your operations or your pipeline. Growth problems are business problems before they are technical ones.'
 }, {
   step: '02',
-  title: 'Design',
-  body: 'We design the right system for the job: the architecture, the interfaces, and the guardrails that make intelligence trustworthy in production.'
+  title: 'Define',
+  body: 'We define the fix: the scope, the architecture and the measure of success, so everyone knows exactly what we’re building and why it will move the number that matters.'
 }, {
   step: '03',
+  title: 'Design',
+  body: 'We design the product around the people who will use it: the interfaces, the workflows and the experience that make a system worth adopting.'
+}, {
+  step: '04',
   title: 'Build',
   body: 'We ship production-grade software that is engineered, observable and maintainable, not experiments that stall after the demo.'
 }, {
-  step: '04',
-  title: 'Deploy',
-  body: 'We put systems into the hands of your teams, measure impact, and iterate until the capability is genuinely part of how you operate.'
+  step: '05',
+  title: 'Unlock',
+  body: 'We put the system to work, measure its impact, and keep iterating until the bottleneck is gone and the growth it was holding back compounds.'
+}];
+const ENGAGEMENTS = [{
+  n: '01',
+  title: 'Fixed-scope build',
+  meta: 'Weeks to months',
+  body: 'A defined product or system, delivered end to end for a fixed price and timeline. Best when you know what needs to exist and want it built properly.'
+}, {
+  n: '02',
+  title: 'Embedded team',
+  meta: 'Monthly',
+  body: 'MAZIX engineers working inside your organisation, shipping alongside your people and leaving real capability behind when we step out.'
+}, {
+  n: '03',
+  title: 'Long-term partner',
+  meta: 'Ongoing',
+  body: 'We stay accountable after launch: maintaining and extending what we build, on retainer or revenue-share models that align us with your outcome.'
 }];
 const PILLARS = [{
   n: '01',
@@ -117,37 +124,46 @@ const TEAM = [{
   credential: ''
 }, {
   name: 'Samy',
-  role: 'Head of AI',
+  role: 'AI & Machine Learning',
   img: samyImg,
   credential: 'PhD'
 }, {
   name: 'Oilid',
-  role: 'Head of Data',
+  role: 'Data & Analytics',
   img: oilidImg,
   credential: ''
 }, {
   name: 'Mira',
-  role: 'Head of Growth & Partnerships',
+  role: 'Strategic Engagements',
   img: miraImg,
   credential: ''
 }, {
+  name: 'Hicham',
+  role: 'Business Development',
+  img: hichamImg,
+  credential: ''
+}, {
   name: 'Farouk',
-  role: 'Forward Deployed Engineer',
+  role: 'Solutions Engineer',
   img: faroukImg,
   credential: ''
 }];
 const PARTNERS = [{
   name: 'Natixis IM',
-  img: natixisLogo
+  img: natixisLogo,
+  h: 'h-9 sm:h-10'
 }, {
   name: 'AWS',
-  img: awsLogo
+  img: awsLogo,
+  h: 'h-10 sm:h-11'
 }, {
   name: 'ENGIE',
-  img: engieLogo
+  img: engieLogo,
+  h: 'h-9 sm:h-10'
 }, {
   name: 'Uber',
-  img: uberLogo
+  img: uberLogo,
+  h: 'h-6 sm:h-7'
 }];
 const STATS = [{
   value: 12,
@@ -214,54 +230,9 @@ function Logo({
     </a>;
 }
 
-/* ---- Pixelated portrait (serious, low-res mosaic; sharpens to colour on hover) ---- */
-function PixelPortrait({
-  src,
-  alt,
-  px = 44
-}: {
-  src: string;
-  alt: string;
-  px?: number;
-}) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    const img = new Image();
-    img.onload = () => {
-      const CW = px;
-      const CH = Math.round(px * 5 / 4); // 4:5 portrait
-      canvas.width = CW;
-      canvas.height = CH;
-      const tr = CW / CH;
-      const ir = img.width / img.height;
-      let sw: number, sh: number, sx: number, sy: number;
-      if (ir > tr) {
-        sh = img.height;
-        sw = sh * tr;
-        sx = (img.width - sw) / 2;
-        sy = 0;
-      } else {
-        sw = img.width;
-        sh = sw / tr;
-        sx = 0;
-        sy = (img.height - sh) / 2;
-      }
-      ctx.imageSmoothingEnabled = false;
-      ctx.clearRect(0, 0, CW, CH);
-      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, CW, CH);
-    };
-    img.src = src;
-  }, [src, px]);
-  return <canvas ref={canvasRef} role="img" aria-label={alt} className="h-full w-full grayscale transition-opacity duration-500 [image-rendering:pixelated] group-hover:opacity-0" />;
-}
-
 /* ---- Marquee (keywords) ---- */
 function Marquee() {
-  const items = ['AI STRATEGY', 'AI ENGINEERING', 'INTELLIGENT AUTOMATION', 'SOFTWARE & APPS', 'DATA ARCHITECTURE', 'INTELLIGENCE ENGINEERING'];
+  const items = ['PRODUCT & UX', 'SOFTWARE & APPS', 'AI ENGINEERING', 'INTELLIGENT AUTOMATION', 'DATA ARCHITECTURE', 'INTELLIGENCE ENGINEERING'];
   const loop = [...items, ...items];
   return <div className="relative flex overflow-hidden border-y border-neutral-900/10 bg-[#0b0d10] py-5">
       <motion.div className="flex shrink-0 items-center gap-8 whitespace-nowrap pr-8" animate={{
@@ -280,26 +251,17 @@ function Marquee() {
     </div>;
 }
 
-/* ---- Partner logo marquee (in colour, always moving) ---- */
-function PartnerMarquee() {
-  const base = [...PARTNERS, ...PARTNERS, ...PARTNERS];
-  const track = [...base, ...base];
-  return <div className="relative mt-8 overflow-hidden">
-      <motion.div className="flex w-max items-center gap-4 sm:gap-5" animate={{
-      x: ['0%', '-50%']
-    }} transition={{
-      duration: 26,
-      ease: 'linear',
-      repeat: Infinity
-    }}>
-        
-        {track.map((p, i) => <div key={i} className="flex h-16 w-40 shrink-0 items-center justify-center rounded-2xl border border-neutral-900/10 bg-white px-6 shadow-sm">
-          
-            <img src={p.img} alt={p.name} decoding="async" className="max-h-9 w-auto max-w-[112px] object-contain" />
+/* ---- Partner logos (monochrome, slow seamless marquee, pauses on hover) ---- */
+function PartnerLogos() {
+  const track = [...PARTNERS, ...PARTNERS];
+  return <div className="relative mt-10 overflow-hidden">
+      <div className="logo-marquee-track flex w-max items-center [animation:logo-marquee_36s_linear_infinite] hover:[animation-play-state:paused]">
+        {track.map((p, i) => <div key={i} className="shrink-0 pr-16 sm:pr-24">
+            <img src={p.img} alt={p.name} decoding="async" className={`${p.h} w-auto max-w-none object-contain opacity-55 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`} />
           </div>)}
-      </motion.div>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-14 bg-gradient-to-r from-[#f7f6f2] to-transparent sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-[#f7f6f2] to-transparent sm:w-24" />
+      </div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#f7f6f2] to-transparent sm:w-16" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#f7f6f2] to-transparent sm:w-16" />
     </div>;
 }
 
@@ -396,18 +358,18 @@ export const MAZIX: React.FC = () => {
         </motion.p>
         <motion.h1 {...fade} className="max-w-5xl text-[2.6rem] font-medium leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[5.2rem]">
           
-          We build the{' '}
-          <span className="italic text-[#12355b]">intelligence layer</span> of
-          modern organisations.
+          We <span className="italic text-[#12355b]">unlock growth</span> for
+          those building what’s next.
         </motion.h1>
         <motion.p {...fade} transition={{
         ...fade.transition,
         delay: 0.05
       }} className="mt-7 max-w-2xl text-lg text-neutral-600 sm:text-xl">
-          
-          We design and build intelligent systems that help organisations
-          automate work, improve decisions and create new capabilities, from
-          strategy to production.
+
+          MAZIX is the full-stack design &amp; dev partner for anyone who
+          wants to elevate their game and stay relevant in the AI era:
+          startups, small businesses and global enterprises alike. We diagnose
+          what’s hurting, define the fix, and build it with you.
         </motion.p>
         <motion.div {...fade} transition={{
         ...fade.transition,
@@ -429,13 +391,11 @@ export const MAZIX: React.FC = () => {
         delay: 0.15
       }} className="mt-14 flex items-center gap-4">
           <div className="flex -space-x-2.5">
-            {['#12355b', '#7fa3d1', '#4a483f', '#0b0d10'].map((c, i) => <span key={i} className="h-9 w-9 rounded-full border-2 border-[#f7f6f2]" style={{
-            background: c
-          }} />)}
+            {[akselImg, samyImg, miraImg, hichamImg].map((img, i) => <img key={i} src={img} alt="" decoding="async" className="h-9 w-9 rounded-full border-2 border-[#f7f6f2] bg-[#0b0d10] object-cover" />)}
           </div>
           <p className="text-sm text-neutral-600">
-            Trusted by teams moving AI from{' '}
-            <span className="font-medium text-[#0b0d10]">experimentation to infrastructure.</span>
+            Trusted by ambitious teams,{' '}
+            <span className="font-medium text-[#0b0d10]">from founders and small businesses to global enterprises.</span>
           </p>
         </motion.div>
       </section>
@@ -452,8 +412,9 @@ export const MAZIX: React.FC = () => {
         ...fade.transition,
         delay: 0.05
       }} className="mt-5 max-w-2xl text-neutral-600">
-          From the first proof of value to systems running across your whole
-          organisation. One team, strategy through production.
+          One team across product, design, software, AI and data, pointed at
+          whatever is blocking your growth. From first build to company-wide
+          systems.
         </motion.p>
         <div className="mt-12 border-t border-neutral-900/10">
           {SERVICES.map(s => {
@@ -508,11 +469,12 @@ export const MAZIX: React.FC = () => {
             <span>How we work</span>
           </div>
           <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium tracking-[-0.02em] sm:text-5xl">
-            Understand. Design. Build. Deploy.
+            Diagnose. Define. Design. Build. Unlock.
           </motion.h2>
           <p className="mt-5 max-w-2xl text-neutral-400">
-            Technology is only valuable when it creates impact. Our process is
-            built to get you there, reliably.
+            We stay pointed at the business problem, not the feature list. Five
+            steps, one accountable team, from first diagnosis to measurable
+            growth.
           </p>
 
           <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
@@ -553,6 +515,26 @@ export const MAZIX: React.FC = () => {
         </div>
       </section>
 
+      {/* ---------- ENGAGEMENT MODELS ---------- */}
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
+        <SectionTag index="03">How we engage</SectionTag>
+        <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] sm:text-5xl">
+          Three ways of working. One standard of delivery.
+        </motion.h2>
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-neutral-900/10 bg-neutral-900/10 md:grid-cols-3">
+          {ENGAGEMENTS.map(e => <div key={e.title} className="flex flex-col gap-8 bg-[#f7f6f2] p-8">
+              <div className="flex items-baseline justify-between">
+                <span className="font-mono text-sm text-[#7fa3d1]">{e.n}</span>
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">{e.meta}</span>
+              </div>
+              <div>
+                <h3 className="text-xl font-medium tracking-[-0.01em]">{e.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">{e.body}</p>
+              </div>
+            </div>)}
+        </div>
+      </section>
+
       {/* ---------- STATS ---------- */}
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
@@ -567,7 +549,7 @@ export const MAZIX: React.FC = () => {
 
       {/* ---------- ABOUT US ---------- */}
       <section id="about" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-        <SectionTag index="03">About us</SectionTag>
+        <SectionTag index="04">About us</SectionTag>
         <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.08] tracking-[-0.02em] sm:text-5xl">
           We’re a tight-knit team with high drive and an obsession with quality
           and meaningful collaboration.
@@ -597,12 +579,10 @@ export const MAZIX: React.FC = () => {
           <span className="text-[#12355b]">◇</span>
           <span>The MAZIX team</span>
         </div>
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
+        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-5">
           {TEAM.map(m => <div key={m.name} className="group">
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-[#0b0d10]">
-                <PixelPortrait src={m.img} alt={m.name} />
-                <img src={m.img} alt="" aria-hidden="true" decoding="async" className="absolute inset-0 h-full w-full object-cover object-center opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-neutral-200">
+                <img src={m.img} alt={m.name} loading="lazy" decoding="async" className="h-full w-full object-cover object-center grayscale" />
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/10" />
               </div>
               <h3 className="mt-3 flex items-center gap-1.5 text-base font-medium tracking-[-0.01em]">
@@ -621,25 +601,27 @@ export const MAZIX: React.FC = () => {
           <span>Team experience</span>
         </div>
         <p className="mt-4 max-w-2xl text-neutral-600">
-          The people behind MAZIX have built and scaled systems at organisations
-          like these.
+          MAZIX is built by engineers and operators with experience scaling
+          systems in complex organisations.
         </p>
-        <PartnerMarquee />
+        <PartnerLogos />
       </section>
 
       {/* ---------- CTA / CONTACT ---------- */}
       <section id="contact" className="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
         <div className="rounded-[2rem] bg-[#0b0d10] px-7 py-16 text-white sm:px-16 sm:py-24">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
-            Let’s build something intelligent
+            Let’s unblock your growth
           </p>
           <h2 className="mt-6 max-w-4xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] sm:text-6xl">
-            Want to build real intelligence into your product, operations and
-            decisions?
+            Something is slowing you down. Let’s find it, and build the fix.
           </h2>
           <p className="mt-6 max-w-2xl text-lg text-neutral-400">
-            We’re on the same page, because turning intelligence into systems
-            that actually ship is exactly what we love to do.
+            Our AI-powered software enables intelligent, real-time
+            decision-making across critical business operations, from the data
+            layer to the front lines of enterprise. We don’t simply build
+            software: we identify the bottleneck, design the solution, and
+            build the technology that unlocks it.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a href={CAL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-full bg-[#f7f6f2] px-7 py-3.5 text-sm font-semibold text-[#0b0d10] transition-transform hover:-translate-y-0.5">
@@ -664,7 +646,8 @@ export const MAZIX: React.FC = () => {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-neutral-500">
-              Building the intelligence layer of modern organisations.
+              The design, engineering and AI partner that helps ambitious
+              companies unblock growth.
             </p>
           </div>
           <div className="text-sm">
@@ -673,10 +656,8 @@ export const MAZIX: React.FC = () => {
               contact@mazix.io
             </a>
             <p className="mt-1 text-neutral-500">41 Rue de Douai, Paris 9</p>
-            <a href={CAL} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 font-medium text-[#12355b] transition-colors hover:text-[#0b0d10]">contact@mazix.io<ArrowUpRight className="h-4 w-4" style={{
-              textAlign: "left",
-              justifyContent: "flex-start"
-            }} />
+            <a href={CAL} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 font-medium text-[#12355b] transition-colors hover:text-[#0b0d10]">
+              Book a call <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
           <div className="flex flex-col gap-3 text-sm md:items-end">
