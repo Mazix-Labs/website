@@ -4,7 +4,6 @@ import { ArrowUpRight, Plus, Minus, Menu, X, ArrowRight, Mail, MapPin } from 'lu
 const BASE = import.meta.env.BASE_URL;
 const mazixLogo = `${BASE}images/mazix-logo.png`;
 const akselImg = `${BASE}images/team/Aksel.jpeg`;
-const samyImg = `${BASE}images/team/Samy.png`;
 const oilidImg = `${BASE}images/team/Oilid.png`;
 const miraImg = `${BASE}images/team/Mira.jpg`;
 const hichamImg = `${BASE}images/team/Hicham.jpg`;
@@ -123,28 +122,23 @@ const TEAM = [{
   img: akselImg,
   credential: ''
 }, {
-  name: 'Samy',
-  role: 'AI & Machine Learning',
-  img: samyImg,
-  credential: 'PhD'
-}, {
   name: 'Oilid',
-  role: 'Data & Analytics',
+  role: 'AI Solutions',
   img: oilidImg,
   credential: ''
 }, {
   name: 'Mira',
-  role: 'Strategic Engagements',
+  role: 'Product Manager',
   img: miraImg,
   credential: ''
 }, {
   name: 'Hicham',
-  role: 'Business Development',
+  role: 'Sales Growth',
   img: hichamImg,
   credential: ''
 }, {
   name: 'Farouk',
-  role: 'Solutions Engineer',
+  role: 'Full Stack Engineer',
   img: faroukImg,
   credential: ''
 }];
@@ -391,7 +385,7 @@ export const MAZIX: React.FC = () => {
         delay: 0.15
       }} className="mt-14 flex items-center gap-4">
           <div className="flex -space-x-2.5">
-            {[akselImg, samyImg, miraImg, hichamImg].map((img, i) => <img key={i} src={img} alt="" decoding="async" className="h-9 w-9 rounded-full border-2 border-[#f7f6f2] bg-[#0b0d10] object-cover" />)}
+            {[akselImg, oilidImg, miraImg, hichamImg].map((img, i) => <img key={i} src={img} alt="" decoding="async" className="h-9 w-9 rounded-full border-2 border-[#f7f6f2] bg-[#0b0d10] object-cover" />)}
           </div>
           <p className="text-sm text-neutral-600">
             Trusted by ambitious teams,{' '}
@@ -579,7 +573,7 @@ export const MAZIX: React.FC = () => {
           <span className="text-[#12355b]">◇</span>
           <span>The MAZIX team</span>
         </div>
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6 lg:gap-5">
+        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
           {TEAM.map(m => <div key={m.name} className="group">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-neutral-200">
                 <img src={m.img} alt={m.name} loading="lazy" decoding="async" className="h-full w-full object-cover object-center grayscale" />
