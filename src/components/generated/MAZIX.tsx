@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus, Menu, X, ArrowRight, Mail, MapPin } from 'lucide-react';
 const BASE = import.meta.env.BASE_URL;
-const mazixLogo = `${BASE}images/mazix-logo.png`;
+const mazixLogo = `${BASE}images/mazix-wordmark.svg`;
 const akselImg = `${BASE}images/team/Aksel.webp`;
 const oilidImg = `${BASE}images/team/Oilid.webp`;
 const miraImg = `${BASE}images/team/Mira.webp`;
@@ -190,7 +190,7 @@ function Counter({
     once: true,
     margin: '-60px'
   });
-  const [n, setN] = useState(0);
+  const [n, setN] = useState(value);
   useEffect(() => {
     if (!inView) return;
     let raf = 0;
@@ -218,9 +218,8 @@ function Logo({
 }: {
   className?: string;
 }) {
-  return <a href="#top" className={`flex items-center gap-2.5 text-lg font-semibold tracking-tight ${className}`}>
-      <img src={mazixLogo} alt="MAZIX" decoding="async" className="h-8 w-8 object-contain" />
-      MAZIX
+  return <a href="#top" className={`inline-flex items-center ${className}`}>
+      <img src={mazixLogo} alt="MAZIX" decoding="async" className="h-5 w-auto" />
     </a>;
 }
 
@@ -237,7 +236,7 @@ function Marquee() {
       repeat: Infinity
     }}>
         
-        {loop.map((it, i) => <span key={i} className="flex items-center gap-8 text-sm font-medium tracking-[0.2em] text-neutral-400">
+        {loop.map((it, i) => <span key={i} className="flex items-center gap-8 text-sm font-medium tracking-[0.12em] sm:tracking-[0.2em] text-neutral-400">
             {it}
             <span className="text-[#7fa3d1]">✦</span>
           </span>)}
@@ -269,7 +268,7 @@ function SectionTag({
   children: React.ReactNode;
   dark?: boolean;
 }) {
-  return <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+  return <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] sm:tracking-[0.25em] text-neutral-600">
       <span className={dark ? 'text-[#7fa3d1]' : 'text-[#12355b]'}>/{index}</span>
       <span>{children}</span>
     </div>;
@@ -280,11 +279,9 @@ export const MAZIX: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const fade = {
     initial: {
-      opacity: 0,
-      y: 24
+      y: 16
     },
     whileInView: {
-      opacity: 1,
       y: 0
     },
     viewport: {
@@ -346,11 +343,11 @@ export const MAZIX: React.FC = () => {
 
       {/* ---------- HERO ---------- */}
       <section id="top" className="mx-auto max-w-7xl px-5 pb-16 pt-16 sm:px-8 sm:pt-24">
-        <motion.p {...fade} className="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-900/15 bg-white/50 px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-neutral-600">
+        <motion.p {...fade} className="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-900/15 bg-white/50 px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-neutral-600">
           
           <span className="h-1.5 w-1.5 rounded-full bg-[#12355b]" /> Intelligence Engineering
         </motion.p>
-        <motion.h1 {...fade} className="max-w-5xl text-[2.6rem] font-medium leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[5.2rem]">
+        <motion.h1 {...fade} className="max-w-5xl text-[2.6rem] font-medium leading-[1.1] sm:leading-[1.02] tracking-[-0.03em] sm:text-6xl lg:text-[5.2rem]">
           
           We <span className="italic text-[#12355b]">unlock growth</span> for
           those building what’s next.
@@ -383,11 +380,11 @@ export const MAZIX: React.FC = () => {
         <motion.div {...fade} transition={{
         ...fade.transition,
         delay: 0.15
-      }} className="mt-14 flex items-center gap-4">
-          <div className="flex -space-x-2.5">
-            {[akselImg, oilidImg, miraImg, hichamImg].map((img, i) => <img key={i} src={img} alt="" decoding="async" className="h-9 w-9 rounded-full border-2 border-[#f7f6f2] bg-[#0b0d10] object-cover" />)}
+      }} className="mt-14 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <div className="flex shrink-0 -space-x-2.5">
+            {[akselImg, oilidImg, miraImg, hichamImg].map((img, i) => <img key={i} src={img} alt="" decoding="async" className="h-9 w-9 shrink-0 rounded-full border-2 border-[#f7f6f2] bg-[#0b0d10] object-cover" />)}
           </div>
-          <p className="text-sm text-neutral-600">
+          <p className="min-w-0 text-sm text-neutral-600">
             Trusted by ambitious teams,{' '}
             <span className="font-medium text-[#0b0d10]">from founders and small businesses to global enterprises.</span>
           </p>
@@ -399,7 +396,7 @@ export const MAZIX: React.FC = () => {
       {/* ---------- SERVICES ---------- */}
       <section id="services" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <SectionTag index="01">Our services</SectionTag>
-        <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] sm:text-5xl">
+        <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.18] sm:leading-[1.05] tracking-[-0.02em] sm:text-5xl">
           Intelligence engineering for zero to one, and one to infinity.
         </motion.h2>
         <motion.p {...fade} transition={{
@@ -416,7 +413,7 @@ export const MAZIX: React.FC = () => {
           return <div key={s.id} className="border-b border-neutral-900/10">
                 <button onClick={() => setOpenService(open ? null : s.id)} className="group flex w-full items-center gap-4 py-6 text-left sm:gap-8 sm:py-7">
                   
-                  <span className="font-mono text-xs text-neutral-400 sm:text-sm">//{s.id}</span>
+                  <span className="font-mono text-xs text-neutral-600 sm:text-sm">//{s.id}</span>
                   <span className="flex-1 text-2xl font-medium tracking-[-0.01em] transition-colors group-hover:text-[#12355b] sm:text-4xl">
                     {s.title}
                   </span>
@@ -458,11 +455,11 @@ export const MAZIX: React.FC = () => {
       {/* ---------- APPROACH ---------- */}
       <section id="approach" className="border-y border-neutral-900/10 bg-[#0b0d10] text-neutral-100">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-          <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+          <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] sm:tracking-[0.25em] text-neutral-400">
             <span className="text-[#7fa3d1]">/02</span>
             <span>How we work</span>
           </div>
-          <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium tracking-[-0.02em] sm:text-5xl">
+          <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium leading-[1.18] tracking-[-0.02em] sm:leading-[1.05] sm:text-5xl">
             Diagnose. Define. Design. Build. Unlock.
           </motion.h2>
           <p className="mt-5 max-w-2xl text-neutral-400">
@@ -482,7 +479,7 @@ export const MAZIX: React.FC = () => {
                 </button>)}
             </div>
             {/* detail */}
-            <div className="relative flex min-h-[220px] flex-col justify-center rounded-2xl border border-white/10 bg-white/[0.03] p-8 sm:p-12">
+            <div className="relative flex min-h-[340px] flex-col justify-center sm:min-h-[220px] rounded-2xl border border-white/10 bg-white/[0.03] p-8 sm:p-12">
               <AnimatePresence mode="wait">
                 <motion.div key={activeStep} initial={{
                 opacity: 0,
@@ -512,14 +509,14 @@ export const MAZIX: React.FC = () => {
       {/* ---------- ENGAGEMENT MODELS ---------- */}
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <SectionTag index="03">How we engage</SectionTag>
-        <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] sm:text-5xl">
+        <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium leading-[1.18] sm:leading-[1.05] tracking-[-0.02em] sm:text-5xl">
           Three ways of working. One standard of delivery.
         </motion.h2>
         <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-neutral-900/10 bg-neutral-900/10 md:grid-cols-3">
           {ENGAGEMENTS.map(e => <div key={e.title} className="flex flex-col gap-8 bg-[#f7f6f2] p-8">
               <div className="flex items-baseline justify-between">
-                <span className="font-mono text-sm text-[#7fa3d1]">{e.n}</span>
-                <span className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400">{e.meta}</span>
+                <span className="font-mono text-sm text-[#12355b]">{e.n}</span>
+                <span className="font-mono text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-neutral-600">{e.meta}</span>
               </div>
               <div>
                 <h3 className="text-xl font-medium tracking-[-0.01em]">{e.title}</h3>
@@ -544,7 +541,7 @@ export const MAZIX: React.FC = () => {
       {/* ---------- ABOUT US ---------- */}
       <section id="about" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <SectionTag index="04">About us</SectionTag>
-        <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.08] tracking-[-0.02em] sm:text-5xl">
+        <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.18] sm:leading-[1.08] tracking-[-0.02em] sm:text-5xl">
           We’re a tight-knit team with high drive and an obsession with quality
           and meaningful collaboration.
         </motion.h2>
@@ -560,7 +557,7 @@ export const MAZIX: React.FC = () => {
         {/* pillars */}
         <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-neutral-900/10 bg-neutral-900/10 sm:grid-cols-2 lg:grid-cols-4">
           {PILLARS.map(p => <div key={p.title} className="flex flex-col gap-6 bg-[#f7f6f2] p-7">
-              <span className="font-mono text-sm text-[#7fa3d1]">{p.n}</span>
+              <span className="font-mono text-sm text-[#12355b]">{p.n}</span>
               <div>
                 <h3 className="text-xl font-medium tracking-[-0.01em]">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-neutral-600">{p.body}</p>
@@ -569,7 +566,7 @@ export const MAZIX: React.FC = () => {
         </div>
 
         {/* team — one line, smaller pixelated portraits */}
-        <div className="mt-16 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+        <div className="mt-16 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] sm:tracking-[0.25em] text-neutral-600">
           <span className="text-[#12355b]">◇</span>
           <span>The MAZIX team</span>
         </div>
@@ -585,12 +582,12 @@ export const MAZIX: React.FC = () => {
                     {m.credential}
                   </span>}
               </h3>
-              <p className="mt-0.5 text-xs text-neutral-500">{m.role}</p>
+              <p className="mt-0.5 text-[13px] leading-snug text-neutral-600">{m.role}</p>
             </div>)}
         </div>
 
         {/* team experience — moving colour logos */}
-        <div className="mt-16 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+        <div className="mt-16 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] sm:tracking-[0.25em] text-neutral-600">
           <span className="text-[#12355b]">◇</span>
           <span>Team experience</span>
         </div>
@@ -604,10 +601,10 @@ export const MAZIX: React.FC = () => {
       {/* ---------- CTA / CONTACT ---------- */}
       <section id="contact" className="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
         <div className="rounded-[2rem] bg-[#0b0d10] px-7 py-16 text-white sm:px-16 sm:py-24">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] sm:tracking-[0.25em] text-neutral-400">
             Let’s unblock your growth
           </p>
-          <h2 className="mt-6 max-w-4xl text-3xl font-medium leading-[1.05] tracking-[-0.02em] sm:text-6xl">
+          <h2 className="mt-6 max-w-4xl text-3xl font-medium leading-[1.18] tracking-[-0.02em] sm:leading-[1.05] sm:text-6xl">
             Something is slowing you down. Let’s find it, and build the fix.
           </h2>
           <p className="mt-6 max-w-2xl text-lg text-neutral-400">
@@ -645,7 +642,7 @@ export const MAZIX: React.FC = () => {
             </p>
           </div>
           <div className="text-sm">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-400">Contact</p>
+            <p className="font-mono text-xs uppercase tracking-[0.14em] sm:tracking-[0.25em] text-neutral-600">Contact</p>
             <a href="mailto:contact@mazix.io" className="mt-3 block text-neutral-700 transition-colors hover:text-[#0b0d10]">
               contact@mazix.io
             </a>
@@ -660,7 +657,7 @@ export const MAZIX: React.FC = () => {
                   {n.label}
                 </a>)}
             </div>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-400 md:mt-auto">© 2026 MAZIX</p>
+            <p className="font-mono text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-neutral-600 md:mt-auto">© 2026 MAZIX</p>
           </div>
         </div>
       </footer>
