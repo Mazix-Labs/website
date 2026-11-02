@@ -626,7 +626,7 @@ export const MAZIX: React.FC = () => {
             </a>
           </div>
           <div className="mt-8 inline-flex items-center gap-2 text-sm text-neutral-400">
-            <MapPin className="h-4 w-4 text-[#7fa3d1]" /> 41 Rue de Douai, Paris 9
+            <MapPin className="h-4 w-4 text-[#7fa3d1]" /> 41 Rue de Douai, Paris 75019, France
           </div>
         </div>
       </section>
@@ -646,7 +646,7 @@ export const MAZIX: React.FC = () => {
             <a href="mailto:contact@mazix.io" className="mt-3 block text-neutral-700 transition-colors hover:text-[#0b0d10]">
               contact@mazix.io
             </a>
-            <p className="mt-1 text-neutral-500">41 Rue de Douai, Paris 9</p>
+            <p className="mt-1 text-neutral-500">41 Rue de Douai, Paris 75019, France</p>
             <a href={CAL} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 font-medium text-[#12355b] transition-colors hover:text-[#0b0d10]">
               Book a call <ArrowUpRight className="h-4 w-4" />
             </a>
