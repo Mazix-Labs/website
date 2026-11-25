@@ -66,9 +66,9 @@ const SERVICES = [{
   tags: ['Pipelines & RAG', 'MLOps & monitoring', 'Privacy & GDPR']
 }];
 const USE_CASE = {
-  sector: 'Coaching platform · Personal & organisational development · Sweden',
+  sector: 'Identity World · Personal & organisational development · Sweden',
   title: 'From a coaching method on paper to a complete digital programme.',
-  challenge: 'A development company had a proprietary coaching method, built from assessments, exercises and coaching sessions, that lived in documents and spreadsheets and was run by hand for every programme.',
+  challenge: 'Identity World had a proprietary coaching method, built from assessments, exercises and coaching sessions, that lived in documents and spreadsheets and was run by hand for every programme.',
   blueprint: 'Process blueprint, digitization assessment, MVP feasibility study, product specification and a phased roadmap with a fixed quote.',
   build: 'A multilingual platform covering the full coaching journey, from preparation to coaching day to follow-up, with assessments, interactive exercises and dedicated spaces for participants, coaches and administrators.',
   tags: ['Expertise → product', 'Full-stack platform', 'Assessments', 'Swedish · German', 'EU-hosted · GDPR']
