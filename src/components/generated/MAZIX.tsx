@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus, Menu, X, ArrowRight, Mail, MapPin } from 'lucide-react';
 const BASE = import.meta.env.BASE_URL;
 const mazixLogo = `${BASE}images/mazix-wordmark.svg`;
@@ -154,6 +154,59 @@ const PARTNERS = [{
   img: uberLogo,
   h: 'h-6 sm:h-7'
 }];
+const STATS = [{
+  value: 12,
+  suffix: '+',
+  label: 'intelligent systems shipped'
+}, {
+  value: 5,
+  suffix: '',
+  label: 'industries served'
+}, {
+  value: 98,
+  suffix: '%',
+  label: 'move from pilot to production'
+}, {
+  value: 12,
+  suffix: 'wk',
+  label: 'median time to first impact'
+}];
+
+/* ---- Animated counter ---- */
+function Counter({
+  value,
+  suffix
+}: {
+  value: number;
+  suffix: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, {
+    once: true,
+    margin: '-60px'
+  });
+  const [n, setN] = useState(value);
+  useEffect(() => {
+    if (!inView) return;
+    let raf = 0;
+    let start = 0;
+    const dur = 1400;
+    const tick = (t: number) => {
+      if (!start) start = t;
+      const p = Math.min((t - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setN(Math.round(eased * value));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, value]);
+  return <span ref={ref}>
+      {n}
+      {suffix}
+    </span>;
+}
+
 /* ---- Brand mark ---- */
 function Logo({
   className = ''
@@ -457,6 +510,18 @@ export const MAZIX: React.FC = () => {
                 <h3 className="text-xl font-medium tracking-[-0.01em]">{e.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-neutral-600">{e.body}</p>
               </div>
+            </div>)}
+        </div>
+      </section>
+
+      {/* ---------- STATS ---------- */}
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {STATS.map(s => <div key={s.label}>
+              <div className="text-4xl font-medium tracking-[-0.02em] sm:text-6xl">
+                <Counter value={s.value} suffix={s.suffix} />
+              </div>
+              <p className="mt-2 text-sm text-neutral-600">{s.label}</p>
             </div>)}
         </div>
       </section>
