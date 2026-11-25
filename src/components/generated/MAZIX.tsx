@@ -27,6 +27,9 @@ const NAV = [{
   label: 'Services',
   href: '#services'
 }, {
+  label: 'Use case',
+  href: '#use-case'
+}, {
   label: 'Approach',
   href: '#approach'
 }, {
@@ -62,6 +65,14 @@ const SERVICES = [{
   blurb: 'The pipelines, retrieval and observability foundations intelligence runs on, with privacy, security and data residency built in from day one, not bolted on after.',
   tags: ['Pipelines & RAG', 'MLOps & monitoring', 'Privacy & GDPR']
 }];
+const USE_CASE = {
+  sector: 'Coaching platform · Personal & organisational development · Sweden',
+  title: 'From a coaching method on paper to a complete digital programme.',
+  challenge: 'A development company had a proprietary coaching method, built from assessments, exercises and coaching sessions, that lived in documents and spreadsheets and was run by hand for every programme.',
+  blueprint: 'Process blueprint, digitization assessment, MVP feasibility study, product specification and a phased roadmap with a fixed quote.',
+  build: 'A multilingual platform covering the full coaching journey, from preparation to coaching day to follow-up, with assessments, interactive exercises and dedicated spaces for participants, coaches and administrators.',
+  tags: ['Expertise → product', 'Full-stack platform', 'Assessments', 'Swedish · German', 'EU-hosted · GDPR']
+};
 const APPROACH = [{
   step: '01',
   title: 'Diagnose',
@@ -440,11 +451,46 @@ export const MAZIX: React.FC = () => {
         </div>
       </section>
 
+      {/* ---------- USE CASE ---------- */}
+      <section id="use-case" className="mx-auto max-w-7xl px-5 pb-20 sm:px-8 sm:pb-28">
+        <SectionTag index="02">Use case</SectionTag>
+        <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.18] sm:leading-[1.05] tracking-[-0.02em] sm:text-5xl">
+          {USE_CASE.title}
+        </motion.h2>
+        <p className="mt-5 font-mono text-xs uppercase tracking-[0.14em] text-neutral-600 sm:tracking-[0.2em]">{USE_CASE.sector}</p>
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-neutral-900/10 bg-neutral-900/10 md:grid-cols-3">
+          {[{
+          n: '01',
+          label: 'The challenge',
+          body: USE_CASE.challenge
+        }, {
+          n: '02',
+          label: 'Blueprint',
+          body: USE_CASE.blueprint
+        }, {
+          n: '03',
+          label: 'Build',
+          body: USE_CASE.build
+        }].map(c => <div key={c.n} className="flex flex-col gap-6 bg-[#f7f6f2] p-8">
+              <span className="font-mono text-sm text-[#12355b]">{c.n}</span>
+              <div>
+                <h3 className="text-xl font-medium tracking-[-0.01em]">{c.label}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">{c.body}</p>
+              </div>
+            </div>)}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {USE_CASE.tags.map(t => <span key={t} className="rounded-full bg-neutral-950/5 px-3 py-1.5 font-mono text-xs text-neutral-600">
+              {t}
+            </span>)}
+        </div>
+      </section>
+
       {/* ---------- APPROACH ---------- */}
       <section id="approach" className="border-y border-neutral-900/10 bg-[#0b0d10] text-neutral-100">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
           <div className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] sm:tracking-[0.25em] text-neutral-400">
-            <span className="text-[#7fa3d1]">/02</span>
+            <span className="text-[#7fa3d1]">/03</span>
             <span>How we work</span>
           </div>
           <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium leading-[1.18] tracking-[-0.02em] sm:leading-[1.05] sm:text-5xl">
@@ -496,7 +542,7 @@ export const MAZIX: React.FC = () => {
 
       {/* ---------- ENGAGEMENT MODELS ---------- */}
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-        <SectionTag index="03">How we engage</SectionTag>
+        <SectionTag index="04">How we engage</SectionTag>
         <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium leading-[1.18] sm:leading-[1.05] tracking-[-0.02em] sm:text-5xl">
           Diagnose first. Then build it properly.
         </motion.h2>
@@ -528,7 +574,7 @@ export const MAZIX: React.FC = () => {
 
       {/* ---------- ABOUT US ---------- */}
       <section id="about" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
-        <SectionTag index="04">About us</SectionTag>
+        <SectionTag index="05">About us</SectionTag>
         <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.18] sm:leading-[1.08] tracking-[-0.02em] sm:text-5xl">
           A small senior team that builds AI systems businesses actually run
           on.
