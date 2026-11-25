@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus, Menu, X, ArrowRight, Mail, MapPin } from 'lucide-react';
 const BASE = import.meta.env.BASE_URL;
 const mazixLogo = `${BASE}images/mazix-wordmark.svg`;
@@ -59,8 +59,8 @@ const SERVICES = [{
 }, {
   id: '005',
   title: 'Data, Infrastructure & Governance',
-  blurb: 'The pipelines, retrieval and observability foundations intelligence runs on, with EU AI Act readiness, privacy and data residency built in from day one, not bolted on after.',
-  tags: ['Pipelines & RAG', 'MLOps & monitoring', 'EU AI Act & GDPR']
+  blurb: 'The pipelines, retrieval and observability foundations intelligence runs on, with privacy, security and data residency built in from day one, not bolted on after.',
+  tags: ['Pipelines & RAG', 'MLOps & monitoring', 'Privacy & GDPR']
 }];
 const APPROACH = [{
   step: '01',
@@ -85,36 +85,31 @@ const APPROACH = [{
 }];
 const ENGAGEMENTS = [{
   n: '01',
-  title: 'Fixed-scope build',
-  meta: 'Weeks to months',
-  body: 'A defined product or system, delivered end to end for a fixed price and timeline. Best when you know what needs to exist and want it built properly.'
+  title: 'Blueprint',
+  meta: '2–4 weeks',
+  body: 'A fixed-fee diagnostic. We audit your operations, product and data, find what’s actually blocking growth, and hand you an architecture, a roadmap and a firm quote. Yours to keep, whoever builds it.'
 }, {
   n: '02',
-  title: 'Embedded team',
-  meta: 'Monthly',
-  body: 'MAZIX engineers working inside your organisation, shipping alongside your people and leaving real capability behind when we step out.'
-}, {
-  n: '03',
-  title: 'Long-term partner',
-  meta: 'Ongoing',
-  body: 'We stay accountable after launch: maintaining and extending what we build, on retainer or revenue-share models that align us with your outcome.'
+  title: 'Build',
+  meta: 'Weeks to months',
+  body: 'The Blueprint, delivered end to end for a fixed price and timeline. One accountable team from first commit to production, with optional maintenance after launch.'
 }];
 const PILLARS = [{
   n: '01',
-  title: 'Mission',
-  body: 'Empowering organisations to create meaningful impact and drive positive innovation with intelligent systems.'
+  title: 'Senior by default',
+  body: 'A small team of experienced engineers. The people you talk to are the people who build.'
 }, {
   n: '02',
-  title: 'Vision',
-  body: 'To be a catalyst for intelligence that advances how organisations, and the people inside them, work and decide.'
+  title: 'Business first',
+  body: 'We start from the bottleneck and the number it’s holding back, not from a technology looking for a use.'
 }, {
   n: '03',
-  title: 'Passion',
-  body: 'We are obsessed with building high-quality systems that are meaningful, memorable, and genuinely useful in production.'
+  title: 'Production, not demos',
+  body: 'Everything we ship is tested, observable and built to run in your business, not stall after the pilot.'
 }, {
   n: '04',
-  title: 'Cause',
-  body: 'We prioritise work that empowers society and protects the environment, using intelligence engineering to do measurable good.'
+  title: 'You stay in control',
+  body: 'You own the code, the data and the documentation. Your team can run it without us.'
 }];
 const TEAM = [{
   name: 'Aksel',
@@ -159,59 +154,6 @@ const PARTNERS = [{
   img: uberLogo,
   h: 'h-6 sm:h-7'
 }];
-const STATS = [{
-  value: 12,
-  suffix: '+',
-  label: 'intelligent systems shipped'
-}, {
-  value: 5,
-  suffix: '',
-  label: 'industries served'
-}, {
-  value: 98,
-  suffix: '%',
-  label: 'move from pilot to production'
-}, {
-  value: 12,
-  suffix: 'wk',
-  label: 'median time to first impact'
-}];
-
-/* ---- Animated counter ---- */
-function Counter({
-  value,
-  suffix
-}: {
-  value: number;
-  suffix: string;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, {
-    once: true,
-    margin: '-60px'
-  });
-  const [n, setN] = useState(value);
-  useEffect(() => {
-    if (!inView) return;
-    let raf = 0;
-    let start = 0;
-    const dur = 1400;
-    const tick = (t: number) => {
-      if (!start) start = t;
-      const p = Math.min((t - start) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setN(Math.round(eased * value));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, value]);
-  return <span ref={ref}>
-      {n}
-      {suffix}
-    </span>;
-}
-
 /* ---- Brand mark ---- */
 function Logo({
   className = ''
@@ -357,10 +299,9 @@ export const MAZIX: React.FC = () => {
         delay: 0.05
       }} className="mt-7 max-w-2xl text-lg text-neutral-600 sm:text-xl">
 
-          MAZIX is the full-stack design &amp; dev partner for anyone who
-          wants to elevate their game and stay relevant in the AI era:
-          startups, small businesses and global enterprises alike. We diagnose
-          what’s hurting, define the fix, and build it with you.
+          MAZIX is a Paris-based AI engineering studio for founders and CTOs.
+          We find what’s slowing your business down, then design and build the
+          software, agents and automation that fix it.
         </motion.p>
         <motion.div {...fade} transition={{
         ...fade.transition,
@@ -377,18 +318,12 @@ export const MAZIX: React.FC = () => {
           </a>
         </motion.div>
 
-        <motion.div {...fade} transition={{
+        <motion.p {...fade} transition={{
         ...fade.transition,
         delay: 0.15
-      }} className="mt-14 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
-          <div className="flex shrink-0 -space-x-2.5">
-            {[akselImg, oilidImg, miraImg, hichamImg].map((img, i) => <img key={i} src={img} alt="" decoding="async" className="h-9 w-9 shrink-0 rounded-full border-2 border-[#f7f6f2] bg-[#0b0d10] object-cover" />)}
-          </div>
-          <p className="min-w-0 text-sm text-neutral-600">
-            Trusted by ambitious teams,{' '}
-            <span className="font-medium text-[#0b0d10]">from founders and small businesses to global enterprises.</span>
-          </p>
-        </motion.div>
+      }} className="mt-14 font-mono text-xs uppercase tracking-[0.14em] text-neutral-600 sm:tracking-[0.2em]">
+          Based in Paris · Working with teams across Europe
+        </motion.p>
       </section>
 
       <Marquee />
@@ -510,9 +445,9 @@ export const MAZIX: React.FC = () => {
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <SectionTag index="03">How we engage</SectionTag>
         <motion.h2 {...fade} className="max-w-3xl text-3xl font-medium leading-[1.18] sm:leading-[1.05] tracking-[-0.02em] sm:text-5xl">
-          Three ways of working. One standard of delivery.
+          Diagnose first. Then build it properly.
         </motion.h2>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-neutral-900/10 bg-neutral-900/10 md:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-neutral-900/10 bg-neutral-900/10 md:grid-cols-2">
           {ENGAGEMENTS.map(e => <div key={e.title} className="flex flex-col gap-8 bg-[#f7f6f2] p-8">
               <div className="flex items-baseline justify-between">
                 <span className="font-mono text-sm text-[#12355b]">{e.n}</span>
@@ -526,32 +461,20 @@ export const MAZIX: React.FC = () => {
         </div>
       </section>
 
-      {/* ---------- STATS ---------- */}
-      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
-          {STATS.map(s => <div key={s.label}>
-              <div className="text-4xl font-medium tracking-[-0.02em] sm:text-6xl">
-                <Counter value={s.value} suffix={s.suffix} />
-              </div>
-              <p className="mt-2 text-sm text-neutral-600">{s.label}</p>
-            </div>)}
-        </div>
-      </section>
-
       {/* ---------- ABOUT US ---------- */}
       <section id="about" className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <SectionTag index="04">About us</SectionTag>
         <motion.h2 {...fade} className="max-w-4xl text-3xl font-medium leading-[1.18] sm:leading-[1.08] tracking-[-0.02em] sm:text-5xl">
-          We’re a tight-knit team with high drive and an obsession with quality
-          and meaningful collaboration.
+          A small senior team that builds AI systems businesses actually run
+          on.
         </motion.h2>
         <motion.p {...fade} transition={{
         ...fade.transition,
         delay: 0.05
       }} className="mt-6 max-w-3xl text-lg text-neutral-600">
-          In a world obsessed with the quantity of output, we focus on quality,
-          collaboration, and building intelligence that leaves things better
-          than we found them.
+          MAZIX brings product, software, AI and data engineering under one
+          roof, so one accountable team takes you from the first diagnosis to
+          a system in production.
         </motion.p>
 
         {/* pillars */}
@@ -608,11 +531,9 @@ export const MAZIX: React.FC = () => {
             Something is slowing you down. Let’s find it, and build the fix.
           </h2>
           <p className="mt-6 max-w-2xl text-lg text-neutral-400">
-            Our AI-powered software enables intelligent, real-time
-            decision-making across critical business operations, from the data
-            layer to the front lines of enterprise. We don’t simply build
-            software: we identify the bottleneck, design the solution, and
-            build the technology that unlocks it.
+            Tell us where things are stuck. In 30 minutes we’ll pinpoint the
+            bottleneck and tell you honestly whether AI, software, or neither
+            is the fix.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a href={CAL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 rounded-full bg-[#f7f6f2] px-7 py-3.5 text-sm font-semibold text-[#0b0d10] transition-transform hover:-translate-y-0.5">
@@ -626,7 +547,7 @@ export const MAZIX: React.FC = () => {
             </a>
           </div>
           <div className="mt-8 inline-flex items-center gap-2 text-sm text-neutral-400">
-            <MapPin className="h-4 w-4 text-[#7fa3d1]" /> 41 Rue de Douai, Paris 75019, France
+            <MapPin className="h-4 w-4 text-[#7fa3d1]" /> 41 Rue de Douai, 75009 Paris, France
           </div>
         </div>
       </section>
@@ -637,8 +558,8 @@ export const MAZIX: React.FC = () => {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-sm text-neutral-500">
-              The design, engineering and AI partner that helps ambitious
-              companies unblock growth.
+              The AI engineering studio that helps ambitious companies unblock
+              growth.
             </p>
           </div>
           <div className="text-sm">
@@ -646,7 +567,7 @@ export const MAZIX: React.FC = () => {
             <a href="mailto:contact@mazix.io" className="mt-3 block text-neutral-700 transition-colors hover:text-[#0b0d10]">
               contact@mazix.io
             </a>
-            <p className="mt-1 text-neutral-500">41 Rue de Douai, Paris 75019, France</p>
+            <p className="mt-1 text-neutral-500">41 Rue de Douai, 75009 Paris, France</p>
             <a href={CAL} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 font-medium text-[#12355b] transition-colors hover:text-[#0b0d10]">
               Book a call <ArrowUpRight className="h-4 w-4" />
             </a>
@@ -657,7 +578,12 @@ export const MAZIX: React.FC = () => {
                   {n.label}
                 </a>)}
             </div>
-            <p className="font-mono text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-neutral-600 md:mt-auto">© 2026 MAZIX</p>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 md:mt-auto md:justify-end">
+              <a href={`${BASE}mentions-legales.html`} className="text-neutral-600 transition-colors hover:text-[#0b0d10]">
+                Mentions légales &amp; confidentialité
+              </a>
+              <p className="font-mono text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-neutral-600">© 2026 MAZIX SASU</p>
+            </div>
           </div>
         </div>
       </footer>
